@@ -1,10 +1,11 @@
 package com.clara.taskdb.controller;
 
+import com.clara.taskdb.model.Task;
 import com.clara.taskdb.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.config.Task;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,7 @@ public class TaskAPIController {
     public TaskAPIController(TaskRepository tasks){
         this.tasks = tasks;
 
-        tasks.save(new Task("task 1", true, false)); //TODO this is where you left off
+        tasks.save(new Task("task 1", true, false));
 
     }
 

@@ -23,7 +23,11 @@ public class Task {
 
     public Task(){}
 
-
+    public Task(@Size(min = 1) String text, boolean urgent, boolean completed) {
+        this.text = text;
+        this.urgent = urgent;
+        this.completed = completed;
+    }
 
     public Long getId() {
         return id;
