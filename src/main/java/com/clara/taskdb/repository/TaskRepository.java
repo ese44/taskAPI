@@ -14,7 +14,7 @@ import java.util.List;
  * Created by by9506zi on 4/12/2018.
  */
 @Repository
-    public interface TaskRepository extends PagingAndSortingRepository<Task, Long>{
+    public interface TaskRepository extends PagingAndSortingRepository<Task, Long>{ // query method
         List<Task> findAllByOrderByUrgentDesc();
 
         @org.springframework.transaction.annotation.Transactional

@@ -15,35 +15,33 @@ import java.util.List;
  */
 
 @RestController
-public class TaskAPIController {
+public class TaskAPIController { // create Task API controller class
 
-    private final TaskRepository tasks;
+    private final TaskRepository tasks; // TaskRepository variable to hold the tasks
 
     @Autowired
-    public TaskAPIController(TaskRepository tasks){
+    public TaskAPIController(TaskRepository tasks){ // TaskAPIController constructor
         this.tasks = tasks;
-
-        tasks.save(new Task("task 1", true, false));
 
     }
 
-    @PostMapping(value="/add")
+    @PostMapping(value="/add") // mapping for adding a task
     public ResponseEntity addTask(@RequestBody Task task){
         System.out.println("new task: " + task);
-        try{
+        try{ // exception handling try block
             tasks.save(task);
-        } catch (Exception e){
+        } catch (Exception e){ // catch block
             return new ResponseEntity<>("Task object is invalid", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @GetMapping("/tasks")
+    @GetMapping("/tasks") // mapping for viewing tasks
     public ResponseEntity<List<Task>> queryTasks(){
         return new ResponseEntity<>(tasks.findAllByOrderByUrgentDesc(), HttpStatus.OK);
     }
 
-    @PatchMapping(value = "/completed")
+    @PatchMapping(value = "/completed") // mapping for completing a task
     public ResponseEntity markTaskAsCompleted(@RequestBody Task task){
 
         int tasksUpdated = tasks.setTaskCompleted(task.isCompleted(), task.getId());
@@ -53,7 +51,7 @@ public class TaskAPIController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping(value="/delete")
+    @DeleteMapping(value="/delete") // mapping for deleting tasks
     public ResponseEntity deleteTask(@RequestBody Task task){
         tasks.delete(task);
         return new ResponseEntity(HttpStatus.OK);

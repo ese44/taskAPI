@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 
 @Controller
-public class TaskController {
+public class TaskController { // create the TaskController class
 
-    @GetMapping("/")
+    @GetMapping("/") //map requests for the home page
     public String homePage(){
         return "index.html";
     }
