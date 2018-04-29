@@ -17,7 +17,7 @@ import java.util.List;
     public interface TaskRepository extends PagingAndSortingRepository<Task, Long>{ // query method
         List<Task> findAllByOrderByUrgentDesc();
 
-        @org.springframework.transaction.annotation.Transactional
+        @Transactional
         @Modifying
         @Query("Update Task t set t.completed = ?1 where t.id = ?2")
         int setTaskCompleted(boolean completed, long id);
